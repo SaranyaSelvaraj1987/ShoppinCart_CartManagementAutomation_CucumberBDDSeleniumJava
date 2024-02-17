@@ -17,7 +17,7 @@ public class cartManagementStepDef {
     @Before
     public void setup() {
         driver = new ChromeDriver();
-        driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+
     }
     @After
     public void tearDown()
@@ -27,12 +27,14 @@ public class cartManagementStepDef {
         }
     }
     @Given("I want to add items to the cart")
-    public void i_want_to_add_items_to_the_cart() {
+    public void i_want_to_add_items_to_the_cart()
+    {
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+        pagesObj = new pages(driver);
     }
     @When("I click on Add Item to Cart button for {string}")
     public void I_click_on_Add_Item_to_Cart_button_for(String item) {
-    pagesObj.addToCart(item);
+        pagesObj.addToCart(item);
     }
 
     @Then("I should be able to see the added {string} at the cart page")

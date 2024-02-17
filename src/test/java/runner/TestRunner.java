@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = "src/test/resources/features",
-                glue={"shoppingcart.stepdefs"},
+                glue={"org.shoppingcart.stepdefs"},
                 plugin={"pretty","html:target/cucumber-reports","json:target/cucumber.json"},
               //  tags="@AddItem",
                 monochrome = true,

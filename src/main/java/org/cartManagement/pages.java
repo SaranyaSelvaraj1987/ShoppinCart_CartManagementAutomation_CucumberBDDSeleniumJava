@@ -19,8 +19,10 @@ public class pages {
     private By addToCart = By.xpath("//button[contains(text(),'ADD TO CART')]");
     //To view the item in the cart
 	private By viewCart = By.xpath("//img[@alt='Cart']");
-    //Cart element for added items
-    private By itemAdded = By.xpath("//p[contains(text(),'Carrot')]");
+    //Cart element for added item Carrot
+    private By itemAddedCarrot = By.xpath("//p[contains(text(),'Carrot')]");
+   private By itemAddedBeetroot = By.xpath("//p[contains(text(),'Beetroot')]");
+    private WebElement itemAddedToCart;
 
     //Constructor
     public pages(WebDriver driver)
@@ -37,6 +39,7 @@ public class pages {
     //Method to addItem to the Cart
     public void addToCart(String item)
     {
+
         List<WebElement> itemList = driver.findElements(prodList);
         for(int i=0;i<itemList.size();i++)
         {
@@ -59,8 +62,16 @@ public class pages {
   }
   public void itemAdded(String item)
   {
-      WebElement itemAddedToCart = driver.findElement(itemAdded);
-      String itemAdded1 = itemAddedToCart.getText().trim();
-      Assert.assertEquals(itemAdded1,item);
+      if(item.equals("Carrot")) {
+           itemAddedToCart = driver.findElement(itemAddedCarrot);}
+      else if (item.equals("Beetroot"))
+          {
+              itemAddedToCart = driver.findElement(itemAddedBeetroot);
+          }
+
+      String itemAdded1 = itemAddedToCart.getText();
+      String[] splittedItem = itemAdded1.split(" - ");
+      String itemName = splittedItem[0];
+      Assert.assertEquals(itemName,item);
   }
 }
